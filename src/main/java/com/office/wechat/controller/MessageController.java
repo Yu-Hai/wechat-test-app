@@ -23,7 +23,7 @@ import com.thoughtworks.xstream.XStream;
  * 信息处理Controller
  * 
  * @author Administrator
- *     
+ * 
  *         2017-6-5 17:00:41
  *
  */
@@ -32,7 +32,11 @@ public class MessageController
 {
     private static Logger logger = Logger.getLogger(MessageController.class);
 
-    @RequestMapping(value = "/app/wechat/receiveAndReturnMessage.do", method = RequestMethod.GET)
+    /**
+     * 接收消息并返回消息
+     * @param request
+     * @param response
+     */
     public void receiveAndReturnMessage(HttpServletRequest request, HttpServletResponse response)
     {
         try
@@ -107,7 +111,7 @@ public class MessageController
         }
         catch (Exception e)
         {
-
+            logger.error("发送消息【异常】" + e);
         }
     }
 

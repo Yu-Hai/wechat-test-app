@@ -1,7 +1,9 @@
 package com.office.wechat.message;
 
 import java.io.Serializable;
+import java.util.Map;
 
+import com.office.common.util.WechatMessageUtil;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 /**
@@ -266,5 +268,22 @@ public class InputMessage implements Serializable
     public void setTicket(String ticket)
     {
         Ticket = ticket;
+    }
+    
+    public void setTextMessage(Map<String, String> map,String content){
+        this.ToUserName=map.get("FromUserName");
+        this.FromUserName=map.get("ToUserName");
+        this.CreateTime=System.currentTimeMillis();
+        this.MsgType=WechatMessageUtil.MESSAGE_TEXT;
+        this.Content=content;
+    }
+    
+    
+    public void setImageMessage(Map<String, String> map){
+        this.ToUserName=map.get("FromUserName");
+        this.FromUserName=map.get("ToUserName");
+        this.CreateTime=System.currentTimeMillis();
+        this.MsgType=WechatMessageUtil.MESSAGE_IMAGE;
+        this.MediaId=map.get("MediaId");
     }
 }
